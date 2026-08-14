@@ -32,6 +32,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
     var errorMessage by mutableStateOf<String?>(null)
     var successMessage by mutableStateOf<String?>(null)
+    var showOfflineOption by mutableStateOf(false)
+        private set
 
     init {
         RetrofitClient.setBaseUrl(sessionManager.getServerBaseUrl())
@@ -49,11 +51,13 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         RetrofitClient.setBaseUrl(newUrl)
         isConfigDialogOpen = false
         successMessage = "Server URL updated to $newUrl"
+        showOfflineOption = false
     }
 
     fun authenticate(onSuccess: () -> Unit) {
         errorMessage = null
         successMessage = null
+        showOfflineOption = false
 
         val email = emailInput.trim()
         val password = passwordInput.trim()
@@ -79,6 +83,13 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun continueOffline(onSuccess: () -> Unit) {
+        val userName = if (nameInput.isNotBlank()) nameInput.trim() else if (emailInput.isNotBlank()) emailInput.substringBefore("@") else "Companion User"
+        val userEmail = if (emailInput.isNotBlank()) emailInput.trim() else "demo@mhc.local"
+        sessionManager.saveUserSession(userId = 999, name = userName, email = userEmail)
+        onSuccess()
+    }
+
     private fun performLogin(email: String, password: String, onSuccess: () -> Unit) {
         isLoading = true
         viewModelScope.launch {
@@ -97,7 +108,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 }
             } catch (e: Exception) {
                 isLoading = false
-                errorMessage = "Network error: ${e.localizedMessage ?: "Unable to connect to server"}"
+                errorMessage = "Backend server unreachable. Make sure Express server is running, or continue in Offline Demo mode below."
+                showOfflineOption = true
             }
         }
     }
@@ -119,7 +131,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 }
             } catch (e: Exception) {
                 isLoading = false
-                errorMessage = "Network error: ${e.localizedMessage ?: "Unable to connect to server"}"
+                errorMessage = "Backend server unreachable. Make sure Express server is running, or continue in Offline Demo mode below."
+                showOfflineOption = true
             }
         }
     }

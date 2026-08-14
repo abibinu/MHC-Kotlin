@@ -363,6 +363,31 @@ fun AuthScreen(
                             )
                         }
                     }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Continue in Offline / Demo Mode Option
+                    OutlinedButton(
+                        onClick = { viewModel.continueOffline(onSuccess = onAuthSuccess) },
+                        shape = RoundedCornerShape(14.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.WifiOff,
+                            contentDescription = "Offline Mode",
+                            tint = Color(0xFF00796B),
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "Continue in Offline / Demo Mode",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = Color(0xFF00796B)
+                        )
+                    }
                 }
             }
         }
