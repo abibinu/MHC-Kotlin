@@ -1,0 +1,38 @@
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the Kotlin/Java toolchains
+*.class
+
+# Log files
+*.log
+
+# Android Studio / IntelliJ IDEA / VS Code
+.idea/
+.vscode/
+*.iml
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Gradle files & Build output
+.gradle/
+build/
+app/build/
+**/build/
+local.properties
+
+# Environment variables & secrets
+.env
+BACKEND/.env
+
+# Node dependencies
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db

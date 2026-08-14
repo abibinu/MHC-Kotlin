@@ -1,0 +1,67 @@
+# Node.js
+# See https://github.com/github/gitignore/blob/master/Node.js.gitignore
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Optional:
+# Build output
+/dist/
+/build/
+
+# Editor directories and files
+.vscode/
+*.suo
+*.user
+*.sln
+*.tmp
+*.bak
+*.vbp
+*.suo
+*.ncb
+*.aps
+*.obj
+*.pch
+*.opt
+*.plg
+*.user
+*.inl
+*.idb
+*.opendb
+*.pag
+*.hsp
+
+# Local configuration files
+/.*.swp
+.DS_Store
+.idea/
+.project
+.classpath
+*.iml
+
+# Logs
+logs/
+*.log
+*.err
+
+# Testing
+/coverage/
+/test-results/
+
+# IDE - Specific files
+.vs/
+*.csproj.user
+*.vspscc
+*.scc
+*~.csproj
+*~.sln
+*~.suo
+*.user
+*.vssscc
+
+# Docker
+Dockerfile*
+docker-compose.*
+.dockerignore
+
+/dialogflow-key.json
