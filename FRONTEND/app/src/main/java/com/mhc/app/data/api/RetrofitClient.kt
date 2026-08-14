@@ -1,5 +1,6 @@
 package com.mhc.app.data.api
 
+import com.mhc.app.data.session.UserSessionManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
-    private var baseUrl: String = "http://192.168.1.100:5000/"
+    private var baseUrl: String = UserSessionManager.DEFAULT_SERVER_URL
 
     fun setBaseUrl(url: String) {
         var formatted = url.trim()
