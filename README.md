@@ -2,6 +2,8 @@
 
 A comprehensive, full-stack mental health support application designed to provide emotional guidance, mood tracking, relaxation utilities, and crisis support.
 
+> 🔄 **Migration Note**: This repository is the modern **Native Android (Kotlin + Jetpack Compose)** re-implementation of the original Flutter project: [abibinu/MENTAL_HEALTH_APP](https://github.com/abibinu/MENTAL_HEALTH_APP).
+
 ---
 
 ##  Project Overview

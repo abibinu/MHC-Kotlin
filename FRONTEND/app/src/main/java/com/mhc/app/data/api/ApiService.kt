@@ -20,4 +20,14 @@ interface ApiService {
     suspend fun getUserProfile(
         @Query("user_id") userId: Int
     ): Response<UserProfile>
+
+    @POST("api/chatbot")
+    suspend fun sendChatMessage(
+        @Body request: ChatRequest
+    ): Response<ChatResponse>
+
+    @GET("api/chatbot/history")
+    suspend fun getChatHistory(
+        @Query("user_id") userId: Int
+    ): Response<ChatHistoryResponse>
 }

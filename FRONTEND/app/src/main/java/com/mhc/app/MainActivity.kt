@@ -13,8 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.mhc.app.data.session.UserSessionManager
 import com.mhc.app.ui.auth.AuthScreen
+import com.mhc.app.ui.chat.ChatScreen
 import com.mhc.app.ui.home.HomeScreen
 import com.mhc.app.ui.theme.MentalHealthCompanionTheme
+
+enum class ScreenState {
+    AUTH,
+    HOME,
+    CHAT
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -25,22 +32,39 @@ class MainActivity : ComponentActivity() {
             MentalHealthCompanionTheme {
                 val context = LocalContext.current
                 val sessionManager = remember { UserSessionManager(context) }
-                var isLoggedIn by remember { mutableStateOf(sessionManager.isLoggedIn()) }
+                var currentScreen by remember {
+                    mutableStateOf(if (sessionManager.isLoggedIn()) ScreenState.HOME else ScreenState.AUTH)
+                }
 
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    Crossfade(targetState = isLoggedIn, label = "AuthCrossfade") { loggedInState ->
-                        if (loggedInState) {
-                            HomeScreen(
-                                onLogout = {
-                                    isLoggedIn = false
-                                }
-                            )
-                        } else {
-                            AuthScreen(
-                                onAuthSuccess = {
-                                    isLoggedIn = true
-                                }
-                            )
+                    Crossfade(targetState = currentScreen, label = "ScreenCrossfade") { screen ->
+                        when (screen) {
+                            ScreenState.AUTH -> {
+                                AuthScreen(
+                                    onAuthSuccess = {
+                                        currentScreen = ScreenState.HOME
+                                    }
+                                )
+                            }
+                            ScreenState.HOME -> {
+                                HomeScreen(
+                                    onLogout = {
+                                        currentScreen = ScreenState.AUTH
+                                    },
+                                    onFeatureClick = { featureTitle ->
+                                        if (featureTitle == "AI Virtual Therapist") {
+                                            currentScreen = ScreenState.CHAT
+                                        }
+                                    }
+                                )
+                            }
+                            ScreenState.CHAT -> {
+                                ChatScreen(
+                                    onBack = {
+                                        currentScreen = ScreenState.HOME
+                                    }
+                                )
+                            }
                         }
                     }
                 }
