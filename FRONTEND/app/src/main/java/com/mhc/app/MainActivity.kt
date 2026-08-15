@@ -15,12 +15,14 @@ import com.mhc.app.data.session.UserSessionManager
 import com.mhc.app.ui.auth.AuthScreen
 import com.mhc.app.ui.chat.ChatScreen
 import com.mhc.app.ui.home.HomeScreen
+import com.mhc.app.ui.mood.MoodTrackerScreen
 import com.mhc.app.ui.theme.MentalHealthCompanionTheme
 
 enum class ScreenState {
     AUTH,
     HOME,
-    CHAT
+    CHAT,
+    MOOD
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,14 +54,22 @@ class MainActivity : ComponentActivity() {
                                         currentScreen = ScreenState.AUTH
                                     },
                                     onFeatureClick = { featureTitle ->
-                                        if (featureTitle == "AI Virtual Therapist") {
-                                            currentScreen = ScreenState.CHAT
+                                        when (featureTitle) {
+                                            "AI Virtual Therapist" -> currentScreen = ScreenState.CHAT
+                                            "Mood Analytics" -> currentScreen = ScreenState.MOOD
                                         }
                                     }
                                 )
                             }
                             ScreenState.CHAT -> {
                                 ChatScreen(
+                                    onBack = {
+                                        currentScreen = ScreenState.HOME
+                                    }
+                                )
+                            }
+                            ScreenState.MOOD -> {
+                                MoodTrackerScreen(
                                     onBack = {
                                         currentScreen = ScreenState.HOME
                                     }

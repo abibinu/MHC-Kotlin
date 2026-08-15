@@ -30,4 +30,24 @@ interface ApiService {
     suspend fun getChatHistory(
         @Query("user_id") userId: Int
     ): Response<ChatHistoryResponse>
+
+    @POST("api/mood-logs")
+    suspend fun addMoodLog(
+        @Body request: MoodLogRequest
+    ): Response<ApiResponse>
+
+    @GET("api/mood-logs")
+    suspend fun getMoodLogs(
+        @Query("user_id") userId: Int
+    ): Response<List<MoodLogItem>>
+
+    @GET("api/mood-logs/analytics")
+    suspend fun getMoodAnalytics(
+        @Query("user_id") userId: Int
+    ): Response<Map<String, Int>>
+
+    @GET("api/mood-logs/latest")
+    suspend fun getLatestMood(
+        @Query("user_id") userId: Int
+    ): Response<LatestMoodResponse>
 }
