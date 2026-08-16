@@ -198,6 +198,12 @@ fun TasksScreen(
                             value = viewModel.newTaskTitle,
                             onValueChange = { viewModel.newTaskTitle = it },
                             placeholder = { Text("Add custom micro-habit...") },
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedTextColor = Color(0xFF212121),
+                                unfocusedTextColor = Color(0xFF212121),
+                                focusedBorderColor = Color(0xFF00796B),
+                                unfocusedBorderColor = Color(0xFFCCCCCC)
+                            ),
                             singleLine = true,
                             shape = RoundedCornerShape(14.dp),
                             modifier = Modifier.weight(1f)

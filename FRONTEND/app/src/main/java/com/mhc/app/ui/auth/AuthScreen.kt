@@ -37,6 +37,20 @@ fun AuthScreen(
     var confirmPasswordVisible by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
 
+    val textFieldColors = OutlinedTextFieldDefaults.colors(
+        focusedTextColor = Color(0xFF212121),
+        unfocusedTextColor = Color(0xFF212121),
+        focusedBorderColor = Color(0xFF00796B),
+        unfocusedBorderColor = Color(0xFFBDBDBD),
+        focusedLabelColor = Color(0xFF00796B),
+        unfocusedLabelColor = Color(0xFF666666),
+        cursorColor = Color(0xFF00796B),
+        focusedLeadingIconColor = Color(0xFF00796B),
+        unfocusedLeadingIconColor = Color(0xFF666666),
+        focusedTrailingIconColor = Color(0xFF00796B),
+        unfocusedTrailingIconColor = Color(0xFF666666)
+    )
+
     if (viewModel.isConfigDialogOpen) {
         ServerConfigDialog(
             currentUrl = viewModel.serverUrlInput,
@@ -252,6 +266,7 @@ fun AuthScreen(
                                 leadingIcon = {
                                     Icon(Icons.Default.Person, contentDescription = "Name Icon")
                                 },
+                                colors = textFieldColors,
                                 singleLine = true,
                                 shape = RoundedCornerShape(14.dp),
                                 modifier = Modifier.fillMaxWidth()
@@ -268,6 +283,7 @@ fun AuthScreen(
                         leadingIcon = {
                             Icon(Icons.Default.Email, contentDescription = "Email Icon")
                         },
+                        colors = textFieldColors,
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Email,
                             imeAction = ImeAction.Next
@@ -295,6 +311,7 @@ fun AuthScreen(
                                 )
                             }
                         },
+                        colors = textFieldColors,
                         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Password,
@@ -324,6 +341,7 @@ fun AuthScreen(
                                         )
                                     }
                                 },
+                                colors = textFieldColors,
                                 visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                                 keyboardOptions = KeyboardOptions(
                                     keyboardType = KeyboardType.Password,
@@ -402,10 +420,19 @@ fun ServerConfigDialog(
 ) {
     var urlText by remember { mutableStateOf(currentUrl) }
 
+    val dialogTextFieldColors = OutlinedTextFieldDefaults.colors(
+        focusedTextColor = Color(0xFF212121),
+        unfocusedTextColor = Color(0xFF212121),
+        focusedBorderColor = Color(0xFF00796B),
+        unfocusedBorderColor = Color(0xFFBDBDBD),
+        focusedLabelColor = Color(0xFF00796B),
+        unfocusedLabelColor = Color(0xFF666666)
+    )
+
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = "Configure Backend Server URL", fontWeight = FontWeight.Bold)
+            Text(text = "Configure Backend Server URL", fontWeight = FontWeight.Bold, color = Color(0xFF212121))
         },
         text = {
             Column {
@@ -419,6 +446,7 @@ fun ServerConfigDialog(
                     value = urlText,
                     onValueChange = { urlText = it },
                     label = { Text("Server Base URL") },
+                    colors = dialogTextFieldColors,
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -434,7 +462,7 @@ fun ServerConfigDialog(
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text("Cancel", color = Color(0xFF00796B))
             }
         }
     )

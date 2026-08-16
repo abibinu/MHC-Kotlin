@@ -461,10 +461,19 @@ fun AddContactDialog(
     onDismiss: () -> Unit,
     onSave: () -> Unit
 ) {
+    val dialogColors = OutlinedTextFieldDefaults.colors(
+        focusedTextColor = Color(0xFF212121),
+        unfocusedTextColor = Color(0xFF212121),
+        focusedBorderColor = Color(0xFF00796B),
+        unfocusedBorderColor = Color(0xFFCCCCCC),
+        focusedLabelColor = Color(0xFF00796B),
+        unfocusedLabelColor = Color(0xFF666666)
+    )
+
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = "Add Personal Emergency Contact", fontWeight = FontWeight.Bold)
+            Text(text = "Add Personal Emergency Contact", fontWeight = FontWeight.Bold, color = Color(0xFF212121))
         },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -472,6 +481,7 @@ fun AddContactDialog(
                     value = name,
                     onValueChange = onNameChange,
                     label = { Text("Contact Name") },
+                    colors = dialogColors,
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -480,6 +490,7 @@ fun AddContactDialog(
                     value = relation,
                     onValueChange = onRelationChange,
                     label = { Text("Relationship (e.g. Mother, Friend, Therapist)") },
+                    colors = dialogColors,
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -488,6 +499,7 @@ fun AddContactDialog(
                     value = phone,
                     onValueChange = onPhoneChange,
                     label = { Text("Phone Number") },
+                    colors = dialogColors,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()

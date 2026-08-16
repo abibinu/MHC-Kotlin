@@ -14,7 +14,7 @@ class UserSessionManager(context: Context) {
         private const val KEY_USER_NAME = "user_name"
         private const val KEY_USER_EMAIL = "user_email"
         private const val KEY_BASE_URL = "server_base_url"
-        const val DEFAULT_SERVER_URL = "http://172.26.192.233:5000/"
+        const val DEFAULT_SERVER_URL = "http://10.231.165.233:5000/"
     }
 
     fun saveUserSession(userId: Int, name: String, email: String) {

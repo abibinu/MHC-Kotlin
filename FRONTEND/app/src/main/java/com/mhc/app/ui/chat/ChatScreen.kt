@@ -257,6 +257,8 @@ fun ChatScreen(
                         ),
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color(0xFF212121),
+                            unfocusedTextColor = Color(0xFF212121),
                             focusedBorderColor = Color(0xFF00796B),
                             unfocusedBorderColor = Color(0xFFCCCCCC)
                         ),

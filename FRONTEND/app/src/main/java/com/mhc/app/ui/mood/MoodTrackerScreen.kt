@@ -137,6 +137,12 @@ fun MoodTrackerScreen(
                             value = viewModel.noteInput,
                             onValueChange = { viewModel.noteInput = it },
                             placeholder = { Text("Add a personal note or reflection (optional)...") },
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedTextColor = Color(0xFF212121),
+                                unfocusedTextColor = Color(0xFF212121),
+                                focusedBorderColor = Color(0xFF00796B),
+                                unfocusedBorderColor = Color(0xFFCCCCCC)
+                            ),
                             shape = RoundedCornerShape(14.dp),
                             modifier = Modifier.fillMaxWidth()
                         )
