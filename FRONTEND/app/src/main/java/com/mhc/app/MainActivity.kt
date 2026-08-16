@@ -17,6 +17,7 @@ import com.mhc.app.ui.chat.ChatScreen
 import com.mhc.app.ui.home.HomeScreen
 import com.mhc.app.ui.mood.MoodTrackerScreen
 import com.mhc.app.ui.relaxation.RelaxationGameScreen
+import com.mhc.app.ui.tasks.TasksScreen
 import com.mhc.app.ui.theme.MentalHealthCompanionTheme
 
 enum class ScreenState {
@@ -24,7 +25,8 @@ enum class ScreenState {
     HOME,
     CHAT,
     MOOD,
-    RELAXATION
+    RELAXATION,
+    TASKS
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -60,6 +62,7 @@ class MainActivity : ComponentActivity() {
                                             "AI Virtual Therapist" -> currentScreen = ScreenState.CHAT
                                             "Mood Analytics" -> currentScreen = ScreenState.MOOD
                                             "Relaxation Breathing" -> currentScreen = ScreenState.RELAXATION
+                                            "Daily Task Planner" -> currentScreen = ScreenState.TASKS
                                         }
                                     }
                                 )
@@ -80,6 +83,13 @@ class MainActivity : ComponentActivity() {
                             }
                             ScreenState.RELAXATION -> {
                                 RelaxationGameScreen(
+                                    onBack = {
+                                        currentScreen = ScreenState.HOME
+                                    }
+                                )
+                            }
+                            ScreenState.TASKS -> {
+                                TasksScreen(
                                     onBack = {
                                         currentScreen = ScreenState.HOME
                                     }
