@@ -11,6 +11,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.mhc.app.data.api.RetrofitClient
 import com.mhc.app.data.session.UserSessionManager
 import com.mhc.app.ui.auth.AuthScreen
 import com.mhc.app.ui.chat.ChatScreen
@@ -42,6 +43,11 @@ class MainActivity : ComponentActivity() {
             MentalHealthCompanionTheme {
                 val context = LocalContext.current
                 val sessionManager = remember { UserSessionManager(context) }
+
+                LaunchedEffect(Unit) {
+                    RetrofitClient.setBaseUrl(sessionManager.getServerBaseUrl())
+                }
+
                 var currentScreen by remember {
                     mutableStateOf(if (sessionManager.isLoggedIn()) ScreenState.HOME else ScreenState.AUTH)
                 }

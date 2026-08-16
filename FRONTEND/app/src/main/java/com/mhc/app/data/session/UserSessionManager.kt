@@ -14,7 +14,7 @@ class UserSessionManager(context: Context) {
         private const val KEY_USER_NAME = "user_name"
         private const val KEY_USER_EMAIL = "user_email"
         private const val KEY_BASE_URL = "server_base_url"
-        const val DEFAULT_SERVER_URL = "http://10.231.165.233:5000/"
+        const val DEFAULT_SERVER_URL = "http://127.0.0.1:5000/"
     }
 
     fun saveUserSession(userId: Int, name: String, email: String) {
@@ -39,8 +39,14 @@ class UserSessionManager(context: Context) {
         prefs.edit().putString(KEY_BASE_URL, url).apply()
     }
 
-    fun getServerBaseUrl(): String =
-        prefs.getString(KEY_BASE_URL, DEFAULT_SERVER_URL) ?: DEFAULT_SERVER_URL
+    fun getServerBaseUrl(): String {
+        val saved = prefs.getString(KEY_BASE_URL, null)
+        if (saved == null || saved.contains("10.231") || saved.contains("172.26") || saved.contains("10.0.2")) {
+            saveServerBaseUrl(DEFAULT_SERVER_URL)
+            return DEFAULT_SERVER_URL
+        }
+        return saved
+    }
 
     fun clearSession() {
         prefs.edit().apply {
