@@ -14,6 +14,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.mhc.app.data.session.UserSessionManager
 import com.mhc.app.ui.auth.AuthScreen
 import com.mhc.app.ui.chat.ChatScreen
+import com.mhc.app.ui.emergency.EmergencyHelpScreen
 import com.mhc.app.ui.home.HomeScreen
 import com.mhc.app.ui.mood.MoodTrackerScreen
 import com.mhc.app.ui.relaxation.RelaxationGameScreen
@@ -26,7 +27,8 @@ enum class ScreenState {
     CHAT,
     MOOD,
     RELAXATION,
-    TASKS
+    TASKS,
+    EMERGENCY
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,6 +65,7 @@ class MainActivity : ComponentActivity() {
                                             "Mood Analytics" -> currentScreen = ScreenState.MOOD
                                             "Relaxation Breathing" -> currentScreen = ScreenState.RELAXATION
                                             "Daily Task Planner" -> currentScreen = ScreenState.TASKS
+                                            "Emergency Help" -> currentScreen = ScreenState.EMERGENCY
                                         }
                                     }
                                 )
@@ -90,6 +93,13 @@ class MainActivity : ComponentActivity() {
                             }
                             ScreenState.TASKS -> {
                                 TasksScreen(
+                                    onBack = {
+                                        currentScreen = ScreenState.HOME
+                                    }
+                                )
+                            }
+                            ScreenState.EMERGENCY -> {
+                                EmergencyHelpScreen(
                                     onBack = {
                                         currentScreen = ScreenState.HOME
                                     }
