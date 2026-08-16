@@ -9,7 +9,7 @@ A comprehensive, full-stack mental health support application designed to provid
 ##  App Demo Preview
 
 <p align="center">
-  <img src="mhc.mp4" alt="Mental Health Companion Screen Recording Demo" width="320"/>
+  <img src="mhc.gif" alt="Mental Health Companion Screen Recording Demo" width="320"/>
 </p>
 
 ---
