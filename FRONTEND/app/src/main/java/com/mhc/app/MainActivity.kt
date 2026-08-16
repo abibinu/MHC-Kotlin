@@ -18,6 +18,7 @@ import com.mhc.app.ui.emergency.EmergencyHelpScreen
 import com.mhc.app.ui.home.HomeScreen
 import com.mhc.app.ui.mood.MoodTrackerScreen
 import com.mhc.app.ui.relaxation.RelaxationGameScreen
+import com.mhc.app.ui.sounds.CalmSoundsScreen
 import com.mhc.app.ui.tasks.TasksScreen
 import com.mhc.app.ui.theme.MentalHealthCompanionTheme
 
@@ -28,7 +29,8 @@ enum class ScreenState {
     MOOD,
     RELAXATION,
     TASKS,
-    EMERGENCY
+    EMERGENCY,
+    CALM_SOUNDS
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,9 +65,10 @@ class MainActivity : ComponentActivity() {
                                         when (featureTitle) {
                                             "AI Virtual Therapist" -> currentScreen = ScreenState.CHAT
                                             "Mood Analytics" -> currentScreen = ScreenState.MOOD
-                                            "Relaxation Breathing" -> currentScreen = ScreenState.RELAXATION
-                                            "Daily Task Planner" -> currentScreen = ScreenState.TASKS
+                                            "Calm Sounds Hub" -> currentScreen = ScreenState.CALM_SOUNDS
                                             "Emergency Help" -> currentScreen = ScreenState.EMERGENCY
+                                            "Daily Task Planner" -> currentScreen = ScreenState.TASKS
+                                            "Relaxation Breathing" -> currentScreen = ScreenState.RELAXATION
                                         }
                                     }
                                 )
@@ -100,6 +103,13 @@ class MainActivity : ComponentActivity() {
                             }
                             ScreenState.EMERGENCY -> {
                                 EmergencyHelpScreen(
+                                    onBack = {
+                                        currentScreen = ScreenState.HOME
+                                    }
+                                )
+                            }
+                            ScreenState.CALM_SOUNDS -> {
+                                CalmSoundsScreen(
                                     onBack = {
                                         currentScreen = ScreenState.HOME
                                     }
