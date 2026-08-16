@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -75,6 +75,7 @@ fun EmergencyHelpScreen(
                     Text(
                         text = "Emergency Help Center",
                         fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
                         color = Color.White
                     )
                 },
@@ -116,42 +117,40 @@ fun EmergencyHelpScreen(
                                     colors = listOf(Color(0xFFD32F2F), Color(0xFFB71C1C))
                                 )
                             )
-                            .padding(20.dp)
+                            .padding(18.dp)
                     ) {
                         Column {
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(40.dp)
-                                            .clip(CircleShape)
-                                            .background(Color.White.copy(alpha = 0.25f)),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.Default.Warning,
-                                            contentDescription = "SOS",
-                                            tint = Color.White
-                                        )
-                                    }
-                                    Spacer(modifier = Modifier.width(12.dp))
-                                    Column {
-                                        Text(
-                                            text = "Immediate Distress?",
-                                            fontSize = 18.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = Color.White
-                                        )
-                                        Text(
-                                            text = "Free 24/7 Crisis Hotline Support",
-                                            fontSize = 12.sp,
-                                            color = Color.White.copy(alpha = 0.85f)
-                                        )
-                                    }
+                                Box(
+                                    modifier = Modifier
+                                        .size(38.dp)
+                                        .clip(CircleShape)
+                                        .background(Color.White.copy(alpha = 0.25f)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Warning,
+                                        contentDescription = "SOS",
+                                        tint = Color.White,
+                                        modifier = Modifier.size(22.dp)
+                                    )
+                                }
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Column {
+                                    Text(
+                                        text = "Immediate Distress?",
+                                        fontSize = 17.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.White
+                                    )
+                                    Text(
+                                        text = "Free 24/7 Crisis Hotline Support",
+                                        fontSize = 12.sp,
+                                        color = Color.White.copy(alpha = 0.85f)
+                                    )
                                 }
                             }
 
@@ -161,20 +160,22 @@ fun EmergencyHelpScreen(
                                 onClick = { launchDialer("112") },
                                 shape = RoundedCornerShape(12.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(48.dp)
+                                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
+                                modifier = Modifier.fillMaxWidth()
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Call,
                                     contentDescription = "Call 112",
-                                    tint = Color(0xFFD32F2F)
+                                    tint = Color(0xFFD32F2F),
+                                    modifier = Modifier.size(18.dp)
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text(
-                                    text = "CALL NATIONAL EMERGENCY 112",
-                                    fontSize = 14.sp,
+                                    text = "CALL EMERGENCY 112",
+                                    fontSize = 13.sp,
                                     fontWeight = FontWeight.Bold,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
                                     color = Color(0xFFD32F2F)
                                 )
                             }
@@ -191,13 +192,17 @@ fun EmergencyHelpScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Personal Emergency Contacts",
+                        text = "Personal Contacts",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF212121)
+                        color = Color(0xFF212121),
+                        modifier = Modifier.weight(1f)
                     )
 
-                    TextButton(onClick = { viewModel.openAddContactDialog() }) {
+                    TextButton(
+                        onClick = { viewModel.openAddContactDialog() },
+                        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Add,
                             contentDescription = "Add Contact",
@@ -207,7 +212,9 @@ fun EmergencyHelpScreen(
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "Add Contact",
+                            fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
+                            maxLines = 1,
                             color = Color(0xFF00796B)
                         )
                     }
@@ -295,7 +302,7 @@ fun PersonalContactCard(
         ) {
             Box(
                 modifier = Modifier
-                    .size(44.dp)
+                    .size(40.dp)
                     .clip(CircleShape)
                     .background(Color(0xFFE0F2F1)),
                 contentAlignment = Alignment.Center
@@ -304,7 +311,7 @@ fun PersonalContactCard(
                     imageVector = Icons.Default.PersonPin,
                     contentDescription = "Contact",
                     tint = Color(0xFF00796B),
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(22.dp)
                 )
             }
 
@@ -346,7 +353,7 @@ fun PersonalContactCard(
                         imageVector = Icons.AutoMirrored.Filled.Message,
                         contentDescription = "Send SMS",
                         tint = Color(0xFF00796B),
-                        modifier = Modifier.size(22.dp)
+                        modifier = Modifier.size(20.dp)
                     )
                 }
 
@@ -355,7 +362,7 @@ fun PersonalContactCard(
                         imageVector = Icons.Default.Call,
                         contentDescription = "Call Contact",
                         tint = Color(0xFF2E7D32),
-                        modifier = Modifier.size(22.dp)
+                        modifier = Modifier.size(20.dp)
                     )
                 }
 
@@ -364,7 +371,7 @@ fun PersonalContactCard(
                         imageVector = Icons.Default.DeleteOutline,
                         contentDescription = "Delete Contact",
                         tint = Color.LightGray,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(18.dp)
                     )
                 }
             }
@@ -404,7 +411,7 @@ fun HelplineCard(
                     fontSize = 12.sp,
                     color = Color(0xFF555555)
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(6.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Surface(
                         color = Color(0xFFFFEBEE),
@@ -428,16 +435,18 @@ fun HelplineCard(
                 }
             }
 
+            Spacer(modifier = Modifier.width(8.dp))
+
             Button(
                 onClick = onCall,
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00796B)),
-                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.Call,
                     contentDescription = "Call",
-                    modifier = Modifier.size(16.dp)
+                    modifier = Modifier.size(14.dp)
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
@@ -473,7 +482,7 @@ fun AddContactDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = "Add Personal Emergency Contact", fontWeight = FontWeight.Bold, color = Color(0xFF212121))
+            Text(text = "Add Personal Contact", fontWeight = FontWeight.Bold, color = Color(0xFF212121))
         },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -489,7 +498,7 @@ fun AddContactDialog(
                 OutlinedTextField(
                     value = relation,
                     onValueChange = onRelationChange,
-                    label = { Text("Relationship (e.g. Mother, Friend, Therapist)") },
+                    label = { Text("Relationship (e.g. Friend, Family)") },
                     colors = dialogColors,
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
@@ -517,7 +526,7 @@ fun AddContactDialog(
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text("Cancel", color = Color(0xFF00796B))
             }
         }
     )
