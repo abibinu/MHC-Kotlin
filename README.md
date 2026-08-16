@@ -2,54 +2,54 @@
 
 A comprehensive, full-stack mental health support application designed to provide emotional guidance, mood tracking, relaxation utilities, and crisis support.
 
-> 🔄 **Migration Note**: This repository is the modern **Native Android (Kotlin + Jetpack Compose)** re-implementation of the original Flutter project: [abibinu/MENTAL_HEALTH_APP](https://github.com/abibinu/MENTAL_HEALTH_APP).
+>  **Migration Note**: This repository is the modern **Native Android (Kotlin + Jetpack Compose)** re-implementation of the original Flutter project: [abibinu/MENTAL_HEALTH_APP](https://github.com/abibinu/MENTAL_HEALTH_APP).
 
 ---
 
-## 📱 App Demo Preview
+##  App Demo Preview
 
 <p align="center">
-  <img src="mhc.gif" alt="Mental Health Companion Screen Recording Demo" width="320"/>
+  <img src="mhc.mp4" alt="Mental Health Companion Screen Recording Demo" width="320"/>
 </p>
 
 ---
 
-## 🌟 Project Overview
+##  Project Overview
 In today’s fast-paced world, stress, anxiety, and mental health challenges have become increasingly prevalent. The **Mental Health Companion** is designed to serve as a secure, personal space for users to monitor their emotional well-being. By combining modern Native Android application design (Kotlin + Jetpack Compose) with secure backend microservices (Node.js/Express) and relational database persistence (PostgreSQL), the app offers a variety of tools to guide users toward better mental health.
 
 ---
 
-## 🚀 Core Features
+##  Core Features
 
-### 1. 🤖 Dual-Language AI Virtual Therapist
+### 1.  Dual-Language AI Virtual Therapist
 * **Bilingual Emotional Support:** Integrated with **Groq AI (Llama-3.3-70B)** and **Google Gemini** APIs to act as a virtual therapist in both **English** and **Malayalam (`മലയാളം`)**.
 * **Context-Aware Conversations:** Personalized greeting based on the user's registered name and a warm, empathetic therapy-focused prompting style.
 * **Persistent Logs:** All chat histories are securely logged on the PostgreSQL server for reference.
 
-### 2. 📊 Mood Tracker & Interactive Analytics
+### 2.  Mood Tracker & Interactive Analytics
 * **Daily Mood Logging:** Users select from 6 emotional states (Happy 😄, Calm 😌, Anxious 😟, Sad 😢, Angry 😠, Energetic ⚡) and append a personal note.
 * **Data Visualization:** Custom Compose Canvas Donut Chart highlighting emotional distribution percentages and breakdown trends.
 
-### 3. 🎵 Calm Sounds Hub
+### 3.  Calm Sounds Hub
 * **Audio Streaming:** Calming soundscapes categorized into nature sounds (Gentle Rain 🌧️, Ocean Waves 🌊, Stream Water 💧, Calm Forest 🌲) and acoustic melodies (Soft Piano 🎹, Meditation Chimes 🔔, Focus Frequencies 🎧).
 * **Background Playback & Visualizer:** Seamless background audio streaming with an animated equalizer waveform visualizer.
 
-### 4. 🧘 Relaxation Exercise: "Calm Tap"
+### 4.  Relaxation Exercise: "Calm Tap"
 * **Mindfulness Breathing Utility:** An interactive 3-2-3 rhythm exercise where a circle smoothly expands (Inhale 3s), holds (Hold 2s), and contracts (Exhale 3s).
 * **Interactive Focus Beat:** Users tap the expanding sphere to synchronize breathing and record mindfulness score points.
 
-### 5. 🆘 Emergency Help Center
+### 5.  Emergency Help Center
 * **24/7 National Helplines:** Direct access to major Indian crisis helplines (Snehi, AASRA, Kiran, Tele-MANAS, iCall, Vandrevala Foundation).
 * **One-Tap Quick Actions:** SOS 112 emergency banner with one-tap phone dialer (`Intent.ACTION_DIAL`) and SMS triggers.
 * **Custom Emergency Contacts:** Users can add and manage trusted family, friends, or therapist contacts.
 
-### 6. 📝 Habit & Daily Task Planner
+### 6.  Habit & Daily Task Planner
 * **Daily Checklists:** An interactive task dashboard to complete daily micro-habits (drinking water, mindful walk, gratitude journaling).
 * **Gamified Achievements:** Unlocks dynamic badges (🌟 *First Step*, 🎯 *Halfway There*, 🏆 *Goal Master*, ✨ *Mindfulness Star*).
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Key Packages / Libraries |
 | :--- | :--- | :--- |
@@ -60,7 +60,7 @@ In today’s fast-paced world, stress, anxiety, and mental health challenges hav
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 The project employs a robust **Client-Server Architecture** utilizing HTTP REST APIs for communication.
 
@@ -71,7 +71,7 @@ The project employs a robust **Client-Server Architecture** utilizing HTTP REST 
 
 ---
 
-## 📊 Database Schema
+##  Database Schema
 
 Run the following SQL commands to initialize the PostgreSQL database schema for the application:
 
@@ -106,9 +106,9 @@ CREATE TABLE chat_logs (
 
 ---
 
-## ⚡ Getting Started
+##  Getting Started
 
-### 🖥️ Backend Setup
+###  Backend Setup
 1. Navigate to the backend directory:
    ```bash
    cd BACKEND
@@ -135,7 +135,7 @@ CREATE TABLE chat_logs (
 
 ---
 
-### 📱 Frontend Setup (Native Kotlin Android CLI & USB Debugging)
+###  Frontend Setup (Native Kotlin Android CLI & USB Debugging)
 
 This frontend is configured for building and deploying directly from the command line without requiring Android Studio.
 
@@ -217,7 +217,7 @@ MHC-KOTLIN/
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 * **Appointment Booking:** Add scheduling modules for certified clinical psychologists and mental health counselors.
 * **Sentiment Trend Alerts:** Automatic warning triggers to reach out to emergency contacts if logged mood trends decline consecutively for 7 days.
 * **Offline Synchronization:** Local SQLite database support to sync local data seamlessly back to the main PostgreSQL server when network connectivity is restored.
